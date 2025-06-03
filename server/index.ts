@@ -16,7 +16,19 @@ app.use((req, res, next) => {
     capturedJsonResponse = bodyJson;
     return originalResJson.apply(res, [bodyJson, ...args]);
   };
+const express = require("express");
+const app = express();
+const PORT = process.env.PORT || 3000;
 
+// ✅ Define root route
+app.get("/", (req, res) => {
+  res.send("🚀 Chat app is live on Railway!");
+});
+
+// ✅ Start the server on Railway-assigned port
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});
   res.on("finish", () => {
     const duration = Date.now() - start;
     if (path.startsWith("/api")) {
